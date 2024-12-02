@@ -14,8 +14,6 @@ class AjaxController extends Controller
         $data = $request->all();
         $data['ip'] = request()->ip();
 
-
-
         $lastData = Contact::create($data);
 
         return back()->with('success',"Mesajınız göndərildi.");

@@ -56,7 +56,7 @@
     <div class="container">
       <div class="row">
         <div class="col-sm-6 col-md-6 col-lg-4 mb-4 mb-lg-0" data-aos="fade" data-aos-delay="">
-          <a class="block-2-item" href="{{ route('qadın-geyim') }}">
+          <a class="block-2-item" href="{{ route('qadin-geyim') }}">
             <figure class="image">
               <img src="assets/images/women.jpg" alt="" class="img-fluid">
             </figure>
@@ -67,7 +67,7 @@
           </a>
         </div>
         <div class="col-sm-6 col-md-6 col-lg-4 mb-5 mb-lg-0" data-aos="fade" data-aos-delay="100">
-          <a class="block-2-item" href="{{ route('uşaq-geyim') }}">
+          <a class="block-2-item" href="{{ route('ushaq-geyim') }}">
             <figure class="image">
               <img src="assets/images/children.jpg" alt="" class="img-fluid">
             </figure>
@@ -78,7 +78,7 @@
           </a>
         </div>
         <div class="col-sm-6 col-md-6 col-lg-4 mb-5 mb-lg-0" data-aos="fade" data-aos-delay="200">
-          <a class="block-2-item" href="{{ route('kişi-geyim') }}">
+          <a class="block-2-item" href="{{ route('kishi-geyim') }}">
             <figure class="image">
               <img src="assets/images/men.jpg" alt="" class="img-fluid">
             </figure>
@@ -182,7 +182,7 @@
         <div class="col-md-12 col-lg-5 text-center pl-md-5">
           <h4>Bütün məhsullarda 50% endirim</h2>
           <p>Seçilmiş məhsullardakı endirim fürsətlərini qaçırmayın.</p>
-          <p><a href="{{ route('endirimli-məhsullar') }}" class="btn btn-primary btn-sm">Endirimli məhsullar</a></p>
+          <p><a href="{{ route('endirimli-mehsullar') }}" class="btn btn-primary btn-sm">Endirimli məhsullar</a></p>
         </div>
       </div>
     </div>

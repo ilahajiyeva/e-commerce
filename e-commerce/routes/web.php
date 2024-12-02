@@ -11,11 +11,11 @@ Route::middleware([SiteSettingMiddleware::class])->group(function () {
     Route::get('/', [PageHomeController::class, "index"])->name("index");
 
     Route::get('/products', [PageController::class, "products"])->name("products");
-    Route::get('/kişi-geyim', [PageController::class, "products"])->name("kişi-geyim");
-    Route::get('/qadın-geyim', [PageController::class, "products"])->name("qadın-geyim");
-    Route::get('/uşaq-geyim', [PageController::class, "products"])->name("uşaq-geyim");
-    Route::get('/endirimli-məhsullar', [PageController::class, "saleProducts"])->name("endirimli-məhsullar");
-    Route::get('/məhsul/detalı', [PageController::class, "productDetails"])->name("məhsul-detalı");
+    Route::get('/kishi-geyim', [PageController::class, "products"])->name("kishi-geyim");
+    Route::get('/qadin-geyim', [PageController::class, "products"])->name("qadin-geyim");
+    Route::get('/ushaq-geyim', [PageController::class, "products"])->name("ushaq-geyim");
+    Route::get('/endirimli-mehsullar', [PageController::class, "saleProducts"])->name("endirimli-mehsullar");
+    Route::get('/product/{slug}', [PageController::class, "productDetails"])->name("product_detail");
 
     Route::get('/about', [PageController::class, "about"])->name("about");
 
