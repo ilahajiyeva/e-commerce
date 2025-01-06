@@ -20,9 +20,9 @@
           <div class="block-5 mb-5">
             <h3 class="footer-heading mb-4">Əlaqə</h3>
             <ul class="list-unstyled">
-              <li class="address">Ünvan</li>
-              <li class="phone"><a href="tel://9940503929210">+994 050 392 92 10</a></li>
-              <li class="email">eticaret@test.com</li>
+              <li class="address">{{$settings['address']}}</li>
+              <li class="phone"><a href="{{str_replace(" ", '', $settings['phone'])}}">{{$settings['phone']}}</a></li>
+              <li class="email">{{$settings['email']}}</li>
             </ul>
           </div>
         </div>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Models\About;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class PageController extends Controller
@@ -16,13 +17,15 @@ class PageController extends Controller
         return view('frontend.pages.contact');
     }
     public function products() {
-        return view('frontend.pages.products');
+        $products = Product::where('status', '1')->paginate(1);
+        return view('frontend.pages.products', compact('products'));
     }
     public function saleproducts() {
         return view('frontend.pages.products');
     }
-    public function prdctdetail() {
-        return view('frontend.pages.product');
+    public function prdctdetail($slug) {
+        $product = Product::where('slug', $slug)->first();
+        return view('frontend.pages.product', compact('product'));
     }
     public function cart() {
         return view('frontend.pages.cart');
