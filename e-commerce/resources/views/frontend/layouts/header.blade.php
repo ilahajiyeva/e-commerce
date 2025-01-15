@@ -24,7 +24,7 @@
                 <li>
                   <a href="{{route('sebet')}}" class="site-cart">
                     <span class="icon icon-shopping_cart"></span>
-                    <span class="count">2</span>
+                    <span class="count">{{session()->get('cart') ? count(session('cart')) : 0}}</span>
                   </a>
                 </li>
                 <li class="d-inline-block d-md-none ml-md-0"><a href="#" class="site-menu-toggle js-menu-toggle"><span class="icon-menu"></span></a></li>
@@ -45,18 +45,16 @@
             <a href="№">Kateqoriya</a>
             <ul class="dropdown">
                 @if (!empty($categories) && $categories->count() > 0)
-                    @foreach ($categories as $category)
-                        @if ($category->cat_ust === null)
+                    @foreach ($categories->where('cat_ust',null) as $category)
                         <li class="has-children">
-                        <a href="#">{{$category->name}}</a>
+                        <a href="{{route($category->slug.'mehsullar')}}">{{$category->name}}</a>
                         <ul class="dropdown">
-                            @foreach ($categories as $subCategory)
-                                @if ($subCategory->cat_ust == $category->id)
-                                    <li><a href="#">{{$subCategory->name}}</a></li>
-                                @endif
+                            @foreach ($category->subcategory as $subCategory)
+                                <li>
+                                    <a href="{{route($category->slug.'mehsullar',$subCategory->slug)}}">{{$subCategory->name}}</a>
+                                </li>
                             @endforeach
                           </ul>
-                        @endif
                     @endforeach
                 @endif
               {{-- <li><a href="#">Menu One</a></li>

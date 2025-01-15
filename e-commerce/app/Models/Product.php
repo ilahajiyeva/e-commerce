@@ -8,7 +8,7 @@ use Cviebrock\EloquentSluggable\Sluggable;
 
 class Product extends Model
 {
-    use Sluggable;
+    use Sluggable, HasFactory;
     protected $fillable = [
         'name',
         'image',
@@ -22,6 +22,9 @@ class Product extends Model
         'status',
         'slug'
     ];
+    public function category() {
+        return $this->hasOne(Category::class, 'id', 'category_id');
+    }
     public function sluggable(): array
     {
         return [

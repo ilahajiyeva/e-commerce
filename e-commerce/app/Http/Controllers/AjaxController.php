@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Contact;
+use Auth;
 use Illuminate\Http\Request;
 use App\Http\Requests\ContactFormRequest;
 
@@ -28,5 +29,9 @@ class AjaxController extends Controller
         $lastData = Contact::create($data);
         return back()->with(['success'=>'Mesajınız göndərildi.']);
 
+    }
+    public function logout() {
+        Auth::logout();
+        return redirect()->route('anasehife');
     }
 }

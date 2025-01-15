@@ -67,7 +67,7 @@
             </a>
           </div>
           <div class="col-sm-6 col-md-6 col-lg-4 mb-5 mb-lg-0" data-aos="fade" data-aos-delay="100">
-            <a class="block-2-item" href="{{ route("ushaqmehsullar")}}">
+            <a class="block-2-item" href="{{ route("usaqmehsullar")}}">
               <figure class="image">
                 <img src="images/children.jpg" alt="" class="img-fluid">
               </figure>
@@ -78,7 +78,7 @@
             </a>
           </div>
           <div class="col-sm-6 col-md-6 col-lg-4 mb-5 mb-lg-0" data-aos="fade" data-aos-delay="200">
-            <a class="block-2-item" href="{{ route("kishimehsullar")}}">
+            <a class="block-2-item" href="{{ route("kisimehsullar")}}">
               <figure class="image">
                 <img src="images/men.jpg" alt="" class="img-fluid">
               </figure>
