@@ -99,7 +99,7 @@
                     @foreach ($categories->where('cat_ust',null) as $category)
                         <li class="mb-1"><a href="{{route($category->slug.'mehsullar')}}" class="d-flex">
                             <span>{{$category->name}}</span>
-                            <span class="text-black ml-auto">({{$category->products_count}})</span></a></li>
+                            <span class="text-black ml-auto">({{$category->getTotalProductCount()}})</span></a></li>
                     @endforeach
                 @endif
                 </ul>

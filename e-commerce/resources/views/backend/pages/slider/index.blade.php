@@ -5,7 +5,7 @@
     <div class="col-lg-12 grid-margin stretch-card">
       <div class="card">
         <div class="card-body">
-          <h4 class="card-title">Slider Table</h4>
+          <h4 class="card-title">Sliders Table</h4>
           <p class="card-description">
             <a class="btn btn-success" href="{{route('panel.slider.create')}}">Create</a>
           </p>
@@ -22,7 +22,11 @@
                 </tr>
               </thead>
               <tbody>
-
+                @if (session()->get('success'))
+                    <div class="alert alert-success">
+                        {{session()->get('success')}}
+                    </div>
+                @endif
                 @if (!empty($sliders) && $sliders->count() > 0)
                 @foreach ($sliders as $slider)
                 <tr>
@@ -42,6 +46,7 @@
                             Edit</a>
 
                         <form method="POST" action="{{route('panel.slider.delete', $slider->id)}}">
+                            @csrf
                             @method('DELETE')
                         `<button type="submit" class="btn btn-danger">Delete</button>
                         </form>
