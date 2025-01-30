@@ -21,7 +21,8 @@ class SliderController extends Controller
     //create
     public function create()
     {
-        return view('backend.pages.slider.edit');
+        $slider = new Slider();
+        return view('backend.pages.slider.edit', compact('slider'));
     }
 
     /**
@@ -31,18 +32,9 @@ class SliderController extends Controller
     {
         if($request->hasFile('image')) {
             $image = $request->image;
-            $path = $image->getClientOriginalExtension();
-            $fileName = time()."-".Str::slug($request->title).".".$path;
+            $fileName = $request->title;
             $downloadFile = 'img/slider/';
-
-            if($path == 'pdf' || $path == 'svg' || $path == 'webp' || $path == 'jiff') {
-                $image->move(public_path($downloadFile),$fileName.".".$path);
-                $imageUrl = $downloadFile.$fileName.'.'.$path;
-            } else {
-                $image = ImageResize::make($image);
-                $image->encode('webp', 75)->save($downloadFile.$fileName.'.webp');
-                $imageUrl = $downloadFile.$fileName.'.webp';
-            }
+            $imageUrl = uploadfile($image,$fileName,$downloadFile);
 
         } else {
             $image = NULL;
@@ -74,26 +66,21 @@ class SliderController extends Controller
     //update
     public function update(Request $request, string $id)
     {
-        if($request->hasFile('image')) {
-            $image = $request->image;
-            $path = $image->getClientOriginalExtension();
-            $fileName = time()."-".Str::slug($request->title).".".$path;
-            $downloadFile = 'img/slider/';
+        $slider = Slider::where('id',$id)->firstOrFail();
 
-            if($path == 'pdf' || $path == 'svg' || $path == 'webp' || $path == 'jiff') {
-                $image->move(public_path($downloadFile),$fileName.".".$path);
-                $imageUrl = $downloadFile.$fileName.'.'.$path;
-            } else {
-                $image = ImageResize::make($image);
-                $image->encode('webp', 75)->save($downloadFile.$fileName.'.webp');
-                $imageUrl = $downloadFile.$fileName.'.webp';
-            }
+        if($request->hasFile('image')) {
+
+            deletefile($slider->image);
+            $image = $request->image;
+            $fileName = $request->title;
+            $downloadFile = 'img/slider/';
+            $imageUrl = uploadfile($image,$fileName,$downloadFile);
 
         } else {
             $image = NULL;
         }
 
-        Slider::where('id',$id)->update([
+        $slider->update([
             'title'=>$request->title,
             'image'=>$imageUrl ?? NULL,
             'description'=>$request->description,
@@ -104,17 +91,19 @@ class SliderController extends Controller
     }
 
     //delete
-    public function delete(string $id)
+    public function delete(Request $request)
     {
-        $slider = Slider::where('id',$id)->firstOrFail();
+        $slider = Slider::where('id',$request->id)->firstOrFail();
 
-        if(file_exists($slider->image)){
-            if(!empty($slider->image)) {
-                unlink($slider->image);
-            }
-        }
-
+        deletefile($slider->image);
         $slider->delete();
-        return back()->withSuccess('Deleted Successfully');
+        return response(['error'=>false, 'message'=>"Deleted Successfully"]);
+    }
+    public function status(Request $request) {
+
+        $update = $request->status;
+        $updatecheck = $update == 'false' ? "0" : "1";
+        Slider::where('id',$request->id)->update(['status'=>$updatecheck]);
+        return response(['error'=>false, 'status' => $update]);
     }
 }

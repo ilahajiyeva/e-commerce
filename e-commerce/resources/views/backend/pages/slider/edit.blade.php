@@ -38,7 +38,7 @@
                 <div class="form-group">
                     <input type="file" name="image" class="file-upload-default">
                     <div class="input-group col-xs-12">
-                        <img src="{{asset($slider->image)}}" width="150">
+                        <img src="{{asset($slider->image ?? "")}}" width="150">
                     </div>
                   </div>
                 <div class="form-group">
